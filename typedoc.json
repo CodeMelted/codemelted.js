@@ -1,0 +1,12 @@
+{
+  "name": "codemelted.js Module",
+  "excludeExternals": true,
+  "excludeProtected": true,
+  "excludePrivate": true,
+  "darkHighlightTheme": "dark-plus",
+  "entryPoints": [
+    "./codemelted.js",
+  ],
+  "out": "docs",
+  "ignoredHighlightLanguages": ["mermaid"]
+}
