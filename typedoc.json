@@ -27,6 +27,7 @@
   "ignoredHighlightLanguages": ["mermaid"],
   "projectDocuments": [
     "documents/about.md",
-    "documents/templates.md"
+    "documents/templates.md",
+    "documents/tests.md"
   ]
 }

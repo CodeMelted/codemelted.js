@@ -58,7 +58,7 @@ import {
   PROTOCOL_EVENT,
   AVAILABILITY_REQUEST,
   runtime_available
-} from "../tests/codemelted.js";
+} from "./codemelted.js";
 
 logger_level(LOGGER.Off);
 mocha.setup('bdd');
