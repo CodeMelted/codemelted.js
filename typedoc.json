@@ -4,9 +4,28 @@
   "excludeProtected": true,
   "excludePrivate": true,
   "darkHighlightTheme": "dark-plus",
+  "readme": "README.md",
   "entryPoints": [
     "./codemelted.js",
   ],
   "out": "docs",
-  "ignoredHighlightLanguages": ["mermaid"]
+  "highlightLanguages": [
+    "bash",
+    "console",
+    "css",
+    "html",
+    "javascript",
+    "json",
+    "jsonc",
+    "json5",
+    "markdown",
+    "powershell",
+    "tsx",
+    "typescript",
+    "yaml"
+  ],
+  "ignoredHighlightLanguages": ["mermaid"],
+  "projectDocuments": [
+    "documents/templates.md"
+  ]
 }
