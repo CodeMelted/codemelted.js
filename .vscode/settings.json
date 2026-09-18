@@ -1,10 +1,16 @@
 {
   "cSpell.words": [
+    "choco",
     "codemelted",
+    "genhtml",
+    "LASTEXITCODE",
     "MSVC",
+    "octicon",
     "OOAD",
+    "rlib",
     "rustc",
-    "staticlib"
+    "staticlib",
+    "typedoc"
   ],
   "deno.enable": true
 }
