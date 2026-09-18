@@ -19,3 +19,6 @@ Cargo.lock
 
 # Ignore the codemelted.js within the tests directory
 tests/codemelted.js
+
+# Stupid mac os files to not check into source control
+.DS_Store
