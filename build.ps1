@@ -72,6 +72,8 @@ function main {
       -ErrorAction Stop
     Copy-Item $PSScriptRoot/favicon.ico $PSScriptRoot/docs -Force `
       -ErrorAction Stop
+    "js.codemelted.com" | Out-File -FilePath $PSScriptRoot/docs/CNAME `
+      -NoNewLine
     message "codemelted.js module build completed."
   }
 
