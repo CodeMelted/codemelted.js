@@ -10,7 +10,8 @@
     "rlib",
     "rustc",
     "staticlib",
-    "typedoc"
+    "typedoc",
+    "WORA"
   ],
   "deno.enable": true
 }

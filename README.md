@@ -1,4 +1,4 @@
-<center><img style="width: px; "src="https://codemelted.com/assets/favicon/codemelted-js/android-chrome-192x192.png" /><h1>codemelted Command Line Interface (CLI)</h1></center>
+<center><img style="width: px; "src="https://codemelted.com/assets/favicon/codemelted-js/android-chrome-192x192.png" /><h1>codemelted.js Project</h1></center>
 
 - [FEATURES](#features)
 - [GETTING STARTED](#getting-started)

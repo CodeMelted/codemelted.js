@@ -2,15 +2,22 @@
   <img style="width: px; "src="https://codemelted.com/assets/favicon/codemelted-js/android-chrome-192x192.png" />
   <h1>About the codemelted.js Project</h1>
   <a aria-label="Follow @codemelted on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-show-count="true" data-size="small" href="https://github.com/codemelted" title="Follow @codemelted on GitHub">codemelted</a>
-  <a aria-label="Watch codemelted/codemelted.rs on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-eye" data-show-count="true" data-size="small" href="https://github.com/codemelted/codemelted.js/subscription" title="Watch codemelted/codemelted.rs on GitHub">Watch</a>
-  <a aria-label="Sponsor @codemelted on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="small" href="https://github.com/sponsors/codemelted" title="Sponsor @codemelted and the codemelted.rs project on GitHub">Sponsor</a>
+  <a aria-label="Watch codemelted/codemelted.js on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-eye" data-show-count="true" data-size="small" href="https://github.com/codemelted/codemelted.js/subscription" title="Watch codemelted/codemelted.js on GitHub">Watch</a>
+  <a aria-label="Sponsor @codemelted on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="small" href="https://github.com/sponsors/codemelted" title="Sponsor @codemelted and the codemelted.js project on GitHub">Sponsor</a>
   <br>
-	<a aria-label="Discuss codemelted/codemelted.rs on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-comment-discussion" data-size="small" href="https://github.com/codemelted/codemelted.js/discussions" title="Discuss codemelted/codemelted.rs on GitHub">Discuss</a>
-  <a aria-label="Download codemelted/codemelted.rs on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="small" href="https://github.com/codemelted/codemelted.rs/archive/HEAD.zip" tabindex="1" title="Download codemelted/codemelted.rs on GitHu">Download</a>
-  <a aria-label="Fork codemelted/codemelted.rs on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-forked" data-size="small" href="https://github.com/codemelted/codemelted.js/fork" title="Fork codemelted/codemelted.rs on GitHub">Fork</a>
-  <a aria-label="Issue codemelted/codemelted.rs on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-issue-opened" data-size="small" href="https://github.com/codemelted/codemelted.js/issues" title="Issue codemelted/codemelted.rs on GitHub">Issue</a>
+	<a aria-label="Discuss codemelted/codemelted.js on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-comment-discussion" data-size="small" href="https://github.com/codemelted/codemelted.js/discussions" title="Discuss codemelted/codemelted.js on GitHub">Discuss</a>
+  <a aria-label="Download codemelted/codemelted.js on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="small" href="https://github.com/codemelted/codemelted.js/archive/HEAD.zip" tabindex="1" title="Download codemelted/codemelted.js on GitHu">Download</a>
+  <a aria-label="Fork codemelted/codemelted.js on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-forked" data-size="small" href="https://github.com/codemelted/codemelted.js/fork" title="Fork codemelted/codemelted.js on GitHub">Fork</a>
+  <a aria-label="Issue codemelted/codemelted.js on GitHub" class="github-button" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-issue-opened" data-size="small" href="https://github.com/codemelted/codemelted.js/issues" title="Issue codemelted/codemelted.js on GitHub">Issue</a>
+  <br><br>
   <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
 </center>
+
+"Write once, run anywhere (WORA)" was the famous slogan made by Sun Microsystems in 1995. At the time, this technology allowed for easy full stack engineering allowing you to target dedicated workstations and on premise servers. So long as a Java Runtime Environment existed, you could run your code. Java was unable to keep to their slogan as web browsers became more advanced, mobile devices became ubiquitous, and companies no longer required dedicated servers.
+
+The **codemelted.js Project** aims to deliver on this full stack engineering premise allowing software engineers to easily build fullstack software solutions. Utilizing the `codemelted.js` ES6 module, a software engineer can target Browser / Deno / Node / Worker JavaScript runtimes to build these fullstack solutions. Software Engineers have their choice of JavaScript or TypeScript for these solutions.
+
+This fullstack solution is accomplished by the `codemelted.js` module implementing 14 domain specific use cases. These represent the most common software engineers face. The `codemelted.js` module implements Browser / Deno API wrappers to facilitate these use cases. When a use case cannot be directly fulfilled via Browser / Deno API wrappers, the Rust `codemelted_lib` static library serves as a binding to the `codemelted.js` module and native command.
 
 **Table of Contents**
 
@@ -20,14 +27,37 @@
 
 # ES6 Consumable Module
 
-<img>
+<img src="https://js.codemelted.com/models/use-case-model.drawio.png" />
+
+**Application Development**
+
+The table belows explains the types of apps you can build when consuming the `codemelted.js` module.
+
+Target        | Description
+------------- | -----------
+CLI / SERVICE | With access to multiple Deno / native bindings, you can utilize the Deno runtime to compile or script your own custom CLI solution with TypeScript
+CLOUD   | Download the `codemelted.js` module and include it within your own Deno / Node project to take advantage of the domain use cases in your next cloud solution. <br>*NOTE: Certain use cases won't be available in a Deno / Node runtime. See codemelted.js Project SDK documentation for details.*
+DESKTOP / WEB | Include the module into your next Single Page App (SPA) / Multi-Page App (MPA) / Progressive Web App (PWA) solution. The ultimate way to get your app to your clients without needing an app store. And with the new `deno --desktop` option, you can bundle that site as an embedded WebView for Mac / Linux / Windows operating systems.
 
 # Command Line Interface (CLI)
 
+<table>
+<tr>
+<td style="width: 285px;"><img src="https://js.codemelted.com/models/cli-model.drawio.png" /></td>
+<td>
+<ul>
+<li>The <code>codemelted</code> command provides a native CLI available on any BSD / Mac / Linux / Windows operating system.</li>
+<li>This facilitates DevOps bash / PowerShell scripting by providing actions that work the same regardless of operating system.</li>
+<li>It also provides commands specific to developer actions when building desktop apps / dedicated compiled services.</li>
+</ul>
+</td>
+</tr>
+</table>
+
 # Support
 
-This project does not want to utilize ads. To that end, any support for this project is appreciated. We are just getting started so follow link up below to track / support this project.
+This project does not want to utilize ads. To that end, any support for this project is appreciated. We are just getting started so follow the links below to track / support this project.
 
 - <a href="https://www.buymeacoffee.com/codemelted"><img src="https://codemelted.com/assets/images/icon-buy-me-a-coffee.png" height="35px" /> Buy Me A Coffee</a>: Direct support for the CodeMeltedDEV content and services offered via the **codemelted.js Project**.
 - <a href="https://github.com/sponsors/CodeMelted"><img src="https://codemelted.com/assets/images/icon-github.png" height="35px" /> GitHub Sponsorship</a>: Direct support for the **codemelted.js Project** either through a one time donation or a monthly subscription.
-- <a href="https://dev.codemelted.com"><img src="https://codemelted.com/assets/favicon/apple-touch-icon.png" height="35px" /> CodeMeltedDEV Website</a>: Main website where I will blog about this project along with other interest and utilize this project to build out the with feature.
+- <a href="https://dev.codemelted.com"><img src="https://codemelted.com/assets/favicon/apple-touch-icon.png" height="35px" /> CodeMeltedDEV Website</a>: Main website where I will blog about this project along with other interest and utilize this project to build out the with features and you can find me for other socials.
