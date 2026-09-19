@@ -3886,6 +3886,22 @@ export function runtime_event({
   }
 }
 
+// TODO: add other queryable elements from Deno along with
+//       along with things from other items.
+// export function runtime_query({request, name}) {
+//   try {
+//     switch (request) {
+//       case DOCUMENT_REQUEST.Environment:
+//         return (new URLSearchParams(
+//           globalThis.location.search)
+//         ).get(name);
+//     }
+//   } catch (err) {
+//     CModuleError.handle_error(err);
+//     throw new CModuleError("storage_get() error.", err);
+//   }
+// }
+
 // ============================================================================
 // [STORAGE USE CASE] =========================================================
 // ============================================================================
@@ -4297,18 +4313,16 @@ export const ACTION_REQUEST = Object.freeze({
  * HTMLElements by class name.
  * @property {string} ElementsByTagName Will query for a collection of
  * HTMLElements by tag name.
- * @property {string} Environment Determines any passed parameters to the
- * runtime.
  */
 export const DOCUMENT_REQUEST = Object.freeze({
   CssVariable: "css_variable",
   ElementById: "element_by_id",
   ElementsByClassName: "elements_by_class_name",
   ElementsByTagName: "elements_by_tag_name",
-  Environment: "environment",
 });
 
 /**
+ * @private UNDER DEVELOPMENT
  * Provides the request actions of the {@link ui_notify} function.
  * @readonly
  * @enum {string}
@@ -4638,6 +4652,15 @@ export async function ui_action({
  * the document.
  * @param {string} params.name The name of the element to perform the action.
  * @returns {HTMLElement | HTMLElement[] | string | null}
+ * @example
+ * // To query for an element within the document. Not being found will fire
+ * // a CModuleError so no need to check for null as it is expected you should
+ * // know how to name your stuff. This will help in quickly finding quirks in
+ * // your built UI.
+ * const el = ui_document({
+ *  request: DOCUMENT_REQUEST.ElementById,
+ *  name: "id_value"
+ * });
  */
 export function ui_document({request, name}) {
   try {
@@ -4679,10 +4702,6 @@ export function ui_document({request, name}) {
         // @ts-ignore It will be a HTMLElement[]
         return Array.from(col2);
       }
-      case DOCUMENT_REQUEST.Environment:
-        return (new URLSearchParams(
-          globalThis.location.search)
-        ).get(name);
       default:
         throw new CModuleError(CModuleError.MISUSE);
     }
@@ -4693,6 +4712,7 @@ export function ui_document({request, name}) {
 }
 
 /**
+ * @private UNDER DEVELOPMENT. Needs embedded dialog.
  * Provides a mechanism for interacting with a user by gather data or
  * useful information.
  * @param {object} params The named parameters
@@ -4734,9 +4754,13 @@ export async function ui_notify({request, message}) {
 }
 
 /**
- *
- * @param {*} request
- * @returns
+ * Determines aspects of the Browser runtime window.
+ * @param {SCREEN_REQUEST} request The aspect of the screen to query.
+ * @returns {string | number} The value associated with the request.
+ * @example
+ * // Determine the device pixel ratio. This only works in a browser
+ * // runtime
+ * const pixel_ratio = ui_screen(SCREEN_REQUEST.DevicePixelRatio);
  */
 export function ui_screen(request) {
   try {
@@ -4836,7 +4860,17 @@ export function ui_screen(request) {
  * Defaulted  to 600.0 when not set.
  * @returns {Window | null} Reference to the newly opened browser window.
  * @example
- * // TBD
+ * // Determine if open is available. It is only available within Browser's
+ * // and may not be available in WebViews if your page is embedded.
+ * if (runtime_available({request: AVAILABILITY_REQUEST.Open})) {
+ *   // Open a website as a pop-up window. treating your site as a multi-window
+ *   // type of application.
+ *   const win = ui_open({
+ *     schema: SCHEMA_TYPE.Https,
+ *     url: "https://google.com",
+ *     popup_window: true
+ *   });
+ * }
  */
 export function ui_open({
   schema,
@@ -4985,83 +5019,6 @@ export class CHtmlComponent extends HTMLElement {
   #shadow_root;
 
   /**
-   * Creates the HTMLElement and attaches a closed shadow DOM to only allow
-   * styling via this component.
-   * @param {object} params The named parameters
-   * @param {CHtmlComponentCB} [params.adopted_cb] The callback that handles
-   * the {@link adoptedCallback} method.
-   * @param {CAttributeChangeCB} [params.attribute_changed_cb] The callback
-   * that handles the {@link attributeChangedCallback} method.
-   * @param {CHtmlComponentCB} [params.connected_cb] The callback that handles
-   * the {@link connectedCallback} method.
-   * @param {CHtmlComponentCB} [params.connected_move_cb] The callback that handles
-   * the {@link connectedMoveCallback} method.
-   * @param {CHtmlComponentCB} [params.disconnected_cb] The callback that handles
-   * the {@link disconnectedCallback} method.
-   */
-  constructor({
-    adopted_cb,
-    attribute_changed_cb,
-    connected_cb,
-    connected_move_cb,
-    disconnected_cb
-  }) {
-    super();
-    try {
-      if (adopted_cb) {
-        json_check_type({
-          type: "function",
-          data: adopted_cb,
-          count: 0,
-          should_throw: true
-        });
-      }
-      if (attribute_changed_cb) {
-        json_check_type({
-          type: "function",
-          data: attribute_changed_cb,
-          count: 3,
-          should_throw: true
-        });
-      }
-      if (connected_cb) {
-        json_check_type({
-          type: "function",
-          data: connected_cb,
-          count: 0,
-          should_throw: true
-        });
-      }
-      if (connected_move_cb) {
-        json_check_type({
-          type: "function",
-          data: connected_move_cb,
-          count: 0,
-          should_throw: true
-        });
-      }
-      if (disconnected_cb) {
-        json_check_type({
-          type: "function",
-          data: disconnected_cb,
-          count: 0,
-          should_throw: true
-        });
-      }
-      this.#adopted_cb = adopted_cb;
-      this.#attribute_changed_cb = attribute_changed_cb;
-      this.#connected_cb = connected_cb;
-      this.#connected_move_cb = connected_move_cb;
-      this.#disconnected_cb = disconnected_cb;
-      // @ts-ignore Will exist in the browser context
-      this.#shadow_root = this.attachShadow({mode: "closed"});
-    } catch (err) {
-      CModuleError.handle_error(err);
-      throw new CModuleError(CModuleError.MISUSE);
-    }
-  }
-
-  /**
    * Provides access to the shadow DOM for constructing the custom component.
    * @protected
    * @readonly
@@ -5185,6 +5142,83 @@ export class CHtmlComponent extends HTMLElement {
     if (!is_defined) {
       // @ts-ignore This will exist in a browser context.
       customElements.define(name, element_def);
+    }
+  }
+
+  /**
+   * Creates the HTMLElement and attaches a closed shadow DOM to only allow
+   * styling via this component.
+   * @param {object} params The named parameters
+   * @param {CHtmlComponentCB} [params.adopted_cb] The callback that handles
+   * the {@link adoptedCallback} method.
+   * @param {CAttributeChangeCB} [params.attribute_changed_cb] The callback
+   * that handles the {@link attributeChangedCallback} method.
+   * @param {CHtmlComponentCB} [params.connected_cb] The callback that handles
+   * the {@link connectedCallback} method.
+   * @param {CHtmlComponentCB} [params.connected_move_cb] The callback that handles
+   * the {@link connectedMoveCallback} method.
+   * @param {CHtmlComponentCB} [params.disconnected_cb] The callback that handles
+   * the {@link disconnectedCallback} method.
+   */
+  constructor({
+    adopted_cb,
+    attribute_changed_cb,
+    connected_cb,
+    connected_move_cb,
+    disconnected_cb
+  }) {
+    super();
+    try {
+      if (adopted_cb) {
+        json_check_type({
+          type: "function",
+          data: adopted_cb,
+          count: 0,
+          should_throw: true
+        });
+      }
+      if (attribute_changed_cb) {
+        json_check_type({
+          type: "function",
+          data: attribute_changed_cb,
+          count: 3,
+          should_throw: true
+        });
+      }
+      if (connected_cb) {
+        json_check_type({
+          type: "function",
+          data: connected_cb,
+          count: 0,
+          should_throw: true
+        });
+      }
+      if (connected_move_cb) {
+        json_check_type({
+          type: "function",
+          data: connected_move_cb,
+          count: 0,
+          should_throw: true
+        });
+      }
+      if (disconnected_cb) {
+        json_check_type({
+          type: "function",
+          data: disconnected_cb,
+          count: 0,
+          should_throw: true
+        });
+      }
+      this.#adopted_cb = adopted_cb;
+      this.#attribute_changed_cb = attribute_changed_cb;
+      this.#connected_cb = connected_cb;
+      this.#connected_move_cb = connected_move_cb;
+      this.#disconnected_cb = disconnected_cb;
+      // @ts-ignore Will exist in the browser context
+      this.#shadow_root = this.attachShadow({mode: "closed"});
+    } catch (err) {
+      CModuleError.handle_error(err);
+      throw new CModuleError(CModuleError.MISUSE);
     }
   }
 }

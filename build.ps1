@@ -176,6 +176,17 @@ function main {
     New-Item -ItemType Directory $PSScriptRoot/docs -ErrorAction Ignore
     Set-Location $PSScriptRoot/tests
 
+    message "Testing bun runtime."
+    bun test --coverage --coverage-reporter=lcov bun.test.ts
+    if ($LASTEXITCODE -ne 0) {
+      throw "test_js 'bun test' failed."
+    } else {
+      lcov_to_html
+      Move-Item -Path coverage -Destination $PSScriptRoot/docs/coverage-bun `
+        -Force -ErrorAction Stop
+      message "bun testing completed."
+    }
+
     # Run the deno tests
     message "Testing deno runtime."
     deno test --allow-env --allow-net --allow-read --allow-sys --allow-write `

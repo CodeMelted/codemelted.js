@@ -16,6 +16,8 @@
   - [Runtime Use Case](#runtime-use-case)
   - [Storage Use Case](#storage-use-case)
   - [UI Use Case](#ui-use-case)
+    - [Public API](#public-api)
+    - [UI Components](#ui-components)
   - [References](#references)
 - [GETTING STARTED](#getting-started)
   - [Clone / Fork](#clone--fork)
@@ -92,7 +94,13 @@ The sections below break down the architecture of the module and how the domain 
 
 ## UI Use Case
 
-<mark>Produce Models</mark>
+### Public API
+
+<img src="models/ui_usecase.png" />
+
+### UI Components
+
+<img src="models/ui_components.png" />
 
 ## References
 
