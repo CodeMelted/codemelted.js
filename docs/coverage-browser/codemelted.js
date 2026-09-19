@@ -1,5 +1,18 @@
 // @ts-check
 // ============================================================================
+/**
+ * Captures information about the `codemelted.js` module.
+ * @typedef {object}
+ * @property {string} author Who made this sticking project anyways.
+ * @property {string} copyright Who has the rights to it.
+ * @property {string} license It's MIT. Do with it as you please.
+ * @property {string} version The current version of the module as identified
+ * on GitHub
+ * @property {string} history A brief history for the year of the version.
+ * Will only be for the given year and reset with each new yearly release.
+ * @property {string} todos Identifies upcoming features / bugs needing
+ * implementation within the module.
+ */
 export const ABOUT_MODULE = Object.freeze({
 author: "mark.shaffer@codemelted.com / dev.codemelted.com",
 copyright: "© 2025 - 2026 Mark Shaffer. All Rights Reserved.",
@@ -35,7 +48,9 @@ todos:`
 });
 // =============================================================================
 /**
- * Introduce the module.
+ * The `codemelted.js` module implements wrappers to Browser / Deno APIs to
+ * implement the * *codemelted.js Project* 14 domain use cases. Below are the
+ * references to those specific Browser / Deno APIs.
  * @module codemelted
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth
