@@ -5248,30 +5248,3 @@ export class CHtmlComponent extends HTMLElement {
 //   }
 // }
 // CHtmlComponent.register_component("cm-icon-button", CIconButton);
-
-// ============================================================================
-// [DENO CLI IMPLEMENTATION] ==================================================
-// ============================================================================
-
-/**
- * @private
- * @returns {void}
- */
-function cli_main() {
-  // If we are not the deno runtime, bail
-  if (!runtime_available({request: AVAILABILITY_REQUEST.Deno})) {
-    console.log("We are not deno!");
-    return;
-  }
-
-  // See if we are compiled, if not bail.
-  const is_compiled = Deno.mainModule.startsWith("file:");
-  if (!is_compiled) {
-    console.log("We are not compiled!");
-    return;
-  }
-
-  // We are the main executable, go carry out stuff.
-  console.log("We are here!");
-}
-cli_main();

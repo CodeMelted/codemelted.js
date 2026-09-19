@@ -60,11 +60,35 @@ function main {
   # ---------------------------------------------------------------------------
   function make_js {
     message "Now building codemelted.js module."
+
+    # Build the documentation
     Remove-Item -Path $PSScriptRoot/docs -Force -Recurse `
       -ErrorAction SilentlyContinue
     typedoc --skipErrorChecking
     if ($LASTEXITCODE -ne 0) {
       throw "make_js - 'typedoc --skipErrorChecking' failed."
+    }
+
+    # Build the executable CLI
+    Remove-Item -Path $PSScriptRoot/dist -Force -Recurse `
+      -ErrorAction SilentlyContinue
+
+    deno compile --target aarch64-apple-darwin `
+      --output dist/mac/codemelted codemelted_cli.ts
+    if ($LASTEXITCODE -ne 0) {
+      throw "make_js - 'deno compile mac' failed."
+    }
+
+    deno compile --target x86_64-unknown-linux-gnu `
+      --output dist/linux/codemelted codemelted_cli.ts
+    if ($LASTEXITCODE -ne 0) {
+      throw "make_js - 'deno compile linux' failed."
+    }
+
+    deno compile --target x86_64-pc-windows-msvc `
+      --output dist/windows/codemelted.exe codemelted_cli.ts
+    if ($LASTEXITCODE -ne 0) {
+      throw "make_js - 'deno compile windows' failed."
     }
 
     # Finish up the the prepping of the documentation
@@ -88,13 +112,32 @@ function main {
     message "codemelted_lib static library build completed."
   }
 
+  function make_zip {
+    # Compress all the compiles.
+    Compress-Archive -Path $PSScriptRoot/dist/linux `
+      -DestinationPath $PSScriptRoot/dist/linux.zip
+    Compress-Archive -Path $PSScriptRoot/dist/mac `
+      -DestinationPath $PSScriptRoot/dist/mac.zip
+    Compress-Archive -Path $PSScriptRoot/dist/windows `
+      -DestinationPath $PSScriptRoot/dist/windows.zip
+
+    # Now remove the originating directory
+    Remove-Item $PSScriptRoot/dist/linux -Recurse -Force -ErrorAction Stop
+    Remove-Item $PSScriptRoot/dist/mac -Recurse -Force -ErrorAction Stop
+    Remove-Item $PSScriptRoot/dist/windows -Recurse -Force -ErrorAction Stop
+  }
+
   function make([string]$option) {
     switch ($option) {
-      "js" { make_js }
+      "js" {
+        make_js
+        make_zip
+      }
       "rust" { make_rust }
       "" {
         make_js
         make_rust
+        make_zip
       }
       default { throw "make - invalid parameter specified" }
     }
@@ -177,7 +220,7 @@ function main {
     Set-Location $PSScriptRoot
     message "codemelted.js module V8 runtime testing completed. " +
       "Execute python3 -m http.server to complete browser testing " +
-      "and validation of the codemelted.com/rs domain."
+      "and validation of the js.codemelted.com domain before pushed."
   }
 
   function test_rust {
