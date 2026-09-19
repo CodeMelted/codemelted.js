@@ -36,17 +36,50 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 `,
-version: "v26.0.0 [Last Updated 2026-OCT-01]",
+version: "v26.0.0 [Last Updated 2026-SEP-19]",
 history:`
-- v26.0.0 [2026-OCT-01]: Initial release of the module. It exposes the current
+- v26.0.0 [2026-SEP-19]: Initial release of the module. It exposes the current
   public APIs and objects available on the Browser / Deno / Node / Worker
   JavaScript runtimes that have been fully tested and documented.
 `,
 todos:`
-1. Identify something needing doing within the file.
+- Research and implement async_lock() from the Web Locks API.
+- Research and implement ui_xxx() functions for Fullscreen API,
+   Picture in Picture API, Navigation API, Resize Observer API, and Screen
+   Wake Lock API.
+- Research Web Cryptography API and how to apply to the module.
+- console_xxx() use cases for deno. Define and expose.
+- db_xxx() use case. Define IndexedDB portion and expose.
+- db_xxx() use case. Define SQLite3 deno portion and expose.
+- disk_xxx() use case. Make the file read / write work with Deno.
+- disk_xxx() use case. Add file operations for Deno.
+- hw_xxx() use case. Implement currently researched protocols and expose.
+- hw_xxx() use case. Implement not yet researched protocols and expose.
+- network_xxx() use case. Get fetch and beacon done. Move queryable items
+  to runtime
+- network_xxx() use case. Get client side CBroadcastChannel / CEventSource
+  hooked up and exposed
+- network_xxx() sue case. Get client side socket based protocols implemented
+  and exposed.
+- network_xxx() use case. Research server side Deno socket based protocols
+  and determine how to implement and implement if easy or fill out more TODOs.
+- npu_compute() use case. Develop tests and expose to the greater project.
+- runtime_xxx() use case. Add runtime_query() to query different values from
+  the runtime. This will not throw just return a signal of "unknown" for the
+  value.
+- runtime_xxx() use case. Build the CRuntimeBinding to be able to link up to
+  third party items (i.e. our custom static library / external JS libs, etc.)
+- ui_xxx() use case. Build out protocols
+- ui_xxx() use case. Finish the ui_notify with custom dialog.
+- ui_xxx() use case. Start building UI components and come up with a standard
+  for using them within HTML to build user interfaces.
+- ui_xxx() use case. Define tests to fully flesh and test this out.
+- Perform OOAD analysis, fill out, and add TODOs for remainder of this project
+  based on necessary Deno wrappers and what will go into the Rust static lib
+  project.
 `,
 });
-// =============================================================================
+// ============================================================================
 // [MODULE CORE] ==============================================================
 // ============================================================================
 
@@ -917,7 +950,17 @@ export function async_task({task, data, delay=0}) {
  * handler for processing the event.
  * @returns {CTimerProtocol}
  * @example
- * // TBD
+ * // Create a timer protocol that fires on a given interval
+ * let timer = async_timer({
+ *   name: "timer",
+ *   interval: 250, // 250 millisecond interval
+ *   rx_handler: (evt) => {
+ *     // Handle timer firing events.
+ *   }
+ * });
+ *
+ * // Later when done.
+ * timer.terminate();
  */
 export function async_timer({name, interval, rx_handler}) {
   try {
@@ -944,7 +987,17 @@ export function async_timer({name, interval, rx_handler}) {
  * @param {string} params.url The URL associated with the worker thread.
  * @returns {CWorkerProtocol}
  * @example
- * // TBD
+ * // Build a worker for a dedicated background thread
+ * if (runtime_availability({request: AVAILABILITY_REQUEST.WorkerAvailable})) {
+ *   const worker = async_worker({
+ *     name: "worker",
+ *     rx_handler: (evt) => { },
+ *     url: "./worker.js"
+ *   });
+ * }
+ *
+ * // Later when done
+ * worker.terminate();
  */
 export function async_worker({
   name,
@@ -964,6 +1017,12 @@ export function async_worker({
     throw new CModuleError("async_task() error.", err);
   }
 }
+
+// ============================================================================
+// [CONSOLE USE CASE] =========================================================
+// ============================================================================
+
+// TBD
 
 // ============================================================================
 // [DB USE CASE] ==============================================================
@@ -3440,6 +3499,186 @@ export async function network_fetch({url, options}) {
 }
 
 // ============================================================================
+// [NPU USE CASE] =============================================================
+// ============================================================================
+
+/**
+ * @private
+ * The math formula to execute with the {@link npu_compute} call.
+ * @readonly
+ * @enum {string}
+ * @property {string} GeodeticDistance
+ * Distance in meters between two WGS84 points.
+ * @property {string} GeodeticHeading
+ * Heading in °N true North 0 - 359.
+ * @property {string} GeodeticSpeed
+ * Speed in meters per second between two WGS84 points.
+ * @property {string} TemperatureCelsiusToFahrenheit
+ * °F = (°C x 9/5) + 32
+ * @property {string} TemperatureCelsiusToKelvin
+ * °K = °C + 273.15
+ * @property {string} TemperatureFahrenheitToCelsius
+ * °C = (°F − 32) × 5/9
+ * @property {string} TemperatureFahrenheitToKelvin
+ * °K = (°F − 32) × 5/9 + 273.15
+ * @property {string} TemperatureKelvinToCelsius
+ * °C = °K − 273.15
+ * @property {string} TemperatureKelvinToFahrenheit
+ * °F = (°K − 273.15) × 9/5 + 32
+ */
+export const MATH_FORMULA = Object.freeze({
+  GeodeticDistance: "GeodeticDistance",
+  GeodeticHeading: "GeodeticHeading",
+  GeodeticSpeed: "GeodeticSpeed",
+  TemperatureCelsiusToFahrenheit: "TemperatureCelsiusToFahrenheit",
+  TemperatureCelsiusToKelvin: "TemperatureCelsiusToKelvin",
+  TemperatureFahrenheitToCelsius: "TemperatureFahrenheitToCelsius",
+  TemperatureFahrenheitToKelvin: "TemperatureFahrenheitToKelvin",
+  TemperatureKelvinToCelsius: "TemperatureKelvinToCelsius",
+  TemperatureKelvinToFahrenheit: "TemperatureKelvinToFahrenheit"
+});
+
+/**
+ * Calculate the geodetic distance.
+ * @private
+ * @param {number} start_latitude
+ * @param {number} start_longitude
+ * @param {number} end_latitude
+ * @param {number} end_longitude
+ * @returns {number}
+ */
+function _geodetic_distance(start_latitude, start_longitude,
+    end_latitude, end_longitude) {
+  // Convert degrees to radians
+  const lat1 = start_latitude * Math.PI / 180.0;
+  const lon1 = start_longitude * Math.PI / 180.0;
+  const lat2 = end_latitude * Math.PI / 180.0;
+  const lon2 = end_longitude * Math.PI / 180.0;
+
+  // radius of earth in metres
+  const r = 6378100.0;
+
+  // P
+  const rho1 = r * Math.cos(lat1);
+  const z1 = r * Math.sin(lat1);
+  const x1 = rho1 * Math.cos(lon1);
+  const y1 = rho1 * Math.sin(lon1);
+
+  // Q
+  const rho2 = r * Math.cos(lat2);
+  const z2 = r * Math.sin(lat2);
+  const x2 = rho2 * Math.cos(lon2);
+  const y2 = rho2 * Math.sin(lon2);
+
+  // Dot product
+  const dot = x1 * x2 + y1 * y2 + z1 * z2;
+  const cos_theta = dot / (r * r);
+  const theta = Math.acos(cos_theta);
+
+  // Distance in meters
+  return r * theta;
+}
+
+/**
+ * Calculates the geodetic heading.
+ * @private
+ * @param {number} start_latitude
+ * @param {number} start_longitude
+ * @param {number} end_latitude
+ * @param {number} end_longitude
+ * @returns {number}
+ */
+function _geodetic_heading(start_latitude, start_longitude,
+    end_latitude, end_longitude) {
+  // Get the initial data from our variables:
+  const lat1 = start_latitude * (Math.PI / 180.0);
+  const lon1 = start_longitude * (Math.PI / 180.0);
+  const lat2 = end_latitude * (Math.PI  / 180.0);
+  const lon2 = end_longitude * (Math.PI  / 180.0);
+
+  // Set up our calculations
+  const y = Math.sin(lon2 - lon1) * Math.cos(lat2);
+  const x = (Math.cos(lat1) * Math.sin(lat2)) -
+    (Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1));
+  const rtnval = Math.atan2(y, x) * (180.0 / Math.PI);
+  return (rtnval + 360.0) % 360.0;
+}
+
+/**
+ * Calculates the geodetic speed.
+ * @private
+ * @param {number} start_milliseconds
+ * @param {number} start_latitude
+ * @param {number} start_longitude
+ * @param {number} end_milliseconds
+ * @param {number} end_latitude
+ * @param {number} end_longitude
+ * @returns {number}
+ */
+function _geodetic_speed(start_latitude, start_longitude,
+    start_milliseconds, end_latitude, end_longitude, end_milliseconds) {
+  const dist_meters = _geodetic_distance(
+    start_latitude, start_longitude,
+    end_latitude, end_longitude
+  );
+  const time_s = (end_milliseconds - start_milliseconds) / 1000.0;
+  return dist_meters / time_s;
+}
+
+/**
+ * @private
+ * Function to execute the {@link MATH_FORMULA} specified within the named
+ * parameters to get the calculated answer.
+ * @param {object} params The named parameters.
+ * @param {MATH_FORMULA} params.formula The formula to run.
+ * @param {number[]} params.args The arguments to use with the formula.
+ * @returns {number} The calculated answer or NaN if division by 0 or sqrt of
+ * a negative number.
+ * @throws {SyntaxError} Reflecting either {@link API_MISUSE},
+ * {@link API_NOT_IMPLEMENTED}, {@link API_TYPE_VIOLATION}, or
+ * {@link API_UNSUPPORTED_RUNTIME} codemelted.js module API
+ * violations. You should not try-catch these as they serve as asserts
+ * to the developer.
+ * @example
+ * // TBD
+ */
+export function npu_compute({formula, args}) {
+  json_check_type({type: "string", data: formula, should_throw: true});
+  json_check_type({type: Array, data: args, should_throw: true});
+  args.forEach((v) => {
+    json_check_type({type: "number", data: v, should_throw: true});
+  });
+  try {
+    switch (formula) {
+      case MATH_FORMULA.GeodeticDistance:
+        return _geodetic_distance(args[0], args[1], args[2], args[3]);
+      case MATH_FORMULA.GeodeticHeading:
+        return _geodetic_heading(args[0], args[1], args[2], args[3]);
+      case MATH_FORMULA.GeodeticSpeed:
+        return _geodetic_speed(args[0], args[1], args[2], args[3], args[4],
+          args[5]);
+      case MATH_FORMULA.TemperatureCelsiusToFahrenheit:
+        return (args[0] * 9.0 / 5.0) + 32.0;
+      case MATH_FORMULA.TemperatureCelsiusToKelvin:
+        return args[0] + 273.15;
+      case MATH_FORMULA.TemperatureFahrenheitToCelsius:
+        return (args[0] - 32.0) * (5.0 / 9.0);
+      case MATH_FORMULA.TemperatureFahrenheitToKelvin:
+        return (args[0] - 32.0) * (5.0 / 9.0) + 273.15;
+      case MATH_FORMULA.TemperatureKelvinToCelsius:
+        return args[0] - 273.15;
+      case MATH_FORMULA.TemperatureKelvinToFahrenheit:
+        return (args[0] - 273.15) * (9.0 / 5.0) + 32.0;
+      default:
+        throw new CModuleError(CModuleError.MISUSE);
+    }
+  } catch (err) {
+    CModuleError.handle_error(err);
+    throw new CModuleError("npu_compute() error", err);
+  }
+}
+
+// ============================================================================
 // [RUNTIME USE CASE] =========================================================
 // ============================================================================
 
@@ -3558,93 +3797,6 @@ export const EVENT_REQUEST = Object.freeze({
 //  */
 // class CRuntimeBinding {
 
-// }
-
-// /**
-//  * Future bindings via the runtime_binding()
-//  * @private
-//  * @extends {CRuntimeBinding}
-//  */
-// class CNpuBinding extends CRuntimeBinding {
-//   /**
-//    * Distance in meters between two WGS84 points. The parameters for the
-//    * formula are start_latitude / start_longitude / end_latitude / end_longitude
-//    * @readonly
-//    * @type {string}
-//    */
-//   static get GeodeticDistance() { return "geodetic_distance"; }
-
-//   /**
-//    * Heading in °N true North 0 - 359. The parameters for the
-//    * formula are start_latitude / start_longitude / end_latitude /
-//    * end_longitude
-//    * @readonly
-//    * @type {string}
-//    */
-//   static get GeodeticHeading() {return "geodetic_heading"; }
-
-//   /**
-//    * Speed in meters per second between two WGS84 points. The parameters for
-//    * the formula are start_milliseconds / start_latitude / start_longitude /
-//    * end_milliseconds / end_latitude / end_longitude
-//    * @readonly
-//    * @type {string}
-//    */
-//   static get GeodeticSpeed() {return "geodetic_speed"; }
-
-//   /**
-//    * °F = (°C x 9/5) + 32
-//    * @readonly
-//    * @type {string}
-//    */
-//   static get TemperatureCelsiusToFahrenheit() {
-//     return "temperature_celsius_to_fahrenheit";
-//   }
-
-//   /**
-//    * °K = °C + 273.15
-//    * @readonly
-//    * @type {string}
-//    */
-//   static get TemperatureCelsiusToKelvin() {
-//     return "temperature_celsius_to_kelvin";
-//   }
-
-//   /**
-//    * °C = (°F − 32) × 5/9
-//    * @readonly
-//    * @type {string}
-//    */
-//   static get TemperatureFahrenheitToCelsius() {
-//     return "temperature_fahrenheit_to_celsius";
-//   }
-
-//   /**
-//    * °K = (°F − 32) × 5/9 + 273.15
-//    * @readonly
-//    * @type {string}
-//    */
-//   static get TemperatureFahrenheitToKelvin() {
-//     return "temperature_fahrenheit_to_kelvin";
-//   }
-
-//   /**
-//    * °C = °K − 273.15
-//    * @readonly
-//    * @type {string}
-//    */
-//   static get TemperatureKelvinToCelsius() {
-//     return  "temperature_kelvin_to_celsius";
-//   }
-
-//   /**
-//    * °F = (°K − 273.15) × 9/5 + 32
-//    * @readonly
-//    * @type {string}
-//    */
-//   static get TemperatureKelvinToFahrenheit() {
-//     return "temperature_kelvin_to_fahrenheit";
-//   }
 // }
 
 /**

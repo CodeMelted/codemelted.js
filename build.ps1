@@ -24,9 +24,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 "@
-version = "v26.0.0 [Last Updated 2026-MMM-DD]"
+version = "v26.0.0 [Last Updated 2026-SEP-19]"
 history = @"
-- v26.0.0 [2026-MMM-DD]: Initial release of the build script to support the
+- v26.0.0 [2026-SEP-19]: Initial release of the build script to support the
   new codemelted.js project.
 "@
 todos = @"

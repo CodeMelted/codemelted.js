@@ -157,11 +157,11 @@ The `codemelted.js` module is hosted on GitHub and delivered via the
 `jsdelivr` CDN. The following represents the URLs for accessing the module. These can be utilized with `import` statements within JavaScript /TypeScript or as part of the `<script type="module"></script>` tags of a website.
 - **Latest Version (Risky):**
   ```txt
-  https://cdn.jsdelivr.net/gh/codemelted/codemelted.js/codemelted.js
+  https://cdn.jsdelivr.net/gh/codemelteddev/codemelted.js/codemelted.js
   ```
 - **Version Controlled (Safest):**
   ```txt
-  https://cdn.jsdelivr.net/gh/codemelted/codemelted.js@XX.Y.Z/codemelted.js
+  https://cdn.jsdelivr.net/gh/codemelteddev/codemelted.js@XX.Y.Z/codemelted.js
   ```
 
 **NOTES:**
