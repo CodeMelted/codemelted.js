@@ -4,6 +4,7 @@
   "excludeExternals": true,
   "excludeProtected": true,
   "excludePrivate": true,
+  "disableSources": true,
   "darkHighlightTheme": "dark-plus",
   "readme": "README.md",
   "entryPoints": [
