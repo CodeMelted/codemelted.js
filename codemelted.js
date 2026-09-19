@@ -47,44 +47,6 @@ todos:`
 `,
 });
 // =============================================================================
-/**
- * The `codemelted.js` module implements wrappers to Browser / Deno APIs to
- * implement the * *codemelted.js Project* 14 domain use cases. Below are the
- * references to those specific Browser / Deno APIs.
- * @module codemelted
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
- * @see https://developer.mozilla.org/en-US/docs/Web/API/CookieStore
- * @see https://developer.mozilla.org/en-US/docs/Web/API/console
- * @see https://developer.mozilla.org/en-US/docs/Web/API/EventSource
- * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
- * @see https://developer.mozilla.org/en-US/docs/Web/API/File_System_API
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Location
- * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/download
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Navigator
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Screen
- * @see https://developer.mozilla.org/en-US/docs/Web/API/USB
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API
- * @see https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
- * @see https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API
- * @see https://developer.mozilla.org/en-US/docs/Web/API/WebTransport
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Window
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Worker
- * @see https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/indexedDB
- * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
- * @see https://doc.rust-lang.org/std/result/
- * @see https://en.cppreference.com/cpp/thread/future
- * @see https://web.dev/articles/files/save-a-file
- */
-// ============================================================================
 // [MODULE CORE] ==============================================================
 // ============================================================================
 

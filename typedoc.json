@@ -1,5 +1,6 @@
 {
   "name": "codemelted.js Project",
+  "alwaysCreateEntryPointModule": true,
   "excludeExternals": true,
   "excludeProtected": true,
   "excludePrivate": true,

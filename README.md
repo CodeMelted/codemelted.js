@@ -16,6 +16,7 @@
   - [Runtime Use Case](#runtime-use-case)
   - [Storage Use Case](#storage-use-case)
   - [UI Use Case](#ui-use-case)
+  - [References](#references)
 - [GETTING STARTED](#getting-started)
   - [Clone / Fork](#clone--fork)
   - [Content Delivery Network (CDN)](#content-delivery-network-cdn)
@@ -92,6 +93,42 @@ The sections below break down the architecture of the module and how the domain 
 ## UI Use Case
 
 <mark>Produce Models</mark>
+
+## References
+
+The following are the references to the external Browser / Deno APIs that were wrapped to create the `codemelted.js` module.
+
+- https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API
+- https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth
+- https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
+- https://developer.mozilla.org/en-US/docs/Web/API/CookieStore
+- https://developer.mozilla.org/en-US/docs/Web/API/console
+- https://developer.mozilla.org/en-US/docs/Web/API/EventSource
+- https://developer.mozilla.org/en-US/docs/Web/API/EventTarget
+- https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+- https://developer.mozilla.org/en-US/docs/Web/API/File_System_API
+- https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+- https://developer.mozilla.org/en-US/docs/Web/API/Location
+- https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/download
+- https://developer.mozilla.org/en-US/docs/Web/API/Navigator
+- https://developer.mozilla.org/en-US/docs/Web/API/Screen
+- https://developer.mozilla.org/en-US/docs/Web/API/USB
+- https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements
+- https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API
+- https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API
+- https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
+- https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API
+- https://developer.mozilla.org/en-US/docs/Web/API/WebTransport
+- https://developer.mozilla.org/en-US/docs/Web/API/Window
+- https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+- https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+- https://developer.mozilla.org/en-US/docs/Web/API/Worker
+- https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/indexedDB
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+- https://doc.rust-lang.org/std/result/
+- https://en.cppreference.com/cpp/thread/future
+- https://web.dev/articles/files/save-a-file
 
 # GETTING STARTED
 
