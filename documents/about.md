@@ -27,7 +27,7 @@ This fullstack solution is accomplished by the `codemelted.js` module implementi
 
 # ES6 Consumable Module
 
-<img src="https://js.codemelted.com/models/use-case-model.drawio.png" />
+<center><img src="https://js.codemelted.com/models/use-case-model.drawio.png" /></center>
 
 **Application Development**
 
@@ -41,18 +41,13 @@ DESKTOP / WEB | Include the module into your next Single Page App (SPA) / Multi-
 
 # Command Line Interface (CLI)
 
-<table>
-<tr>
-<td style="width: 285px;"><img src="https://js.codemelted.com/models/cli-model.drawio.png" /></td>
-<td>
-<ul>
-<li>The <code>codemelted</code> command provides a native CLI available on any BSD / Mac / Linux / Windows operating system.</li>
-<li>This facilitates DevOps bash / PowerShell scripting by providing actions that work the same regardless of operating system.</li>
-<li>It also provides commands specific to developer actions when building desktop apps / dedicated compiled services.</li>
-</ul>
-</td>
-</tr>
-</table>
+<center><img src="https://js.codemelted.com/models/cli-model.drawio.png" /></center>
+
+**NOTES:**
+
+- The `codemelted` command provides a native CLI available on any BSD / Mac / Linux / Windows operating system.
+- This facilitates DevOps bash / PowerShell scripting by providing actions that work the same regardless of operating system.
+- It also provides commands specific to developer actions when building desktop apps / dedicated compiled services.
 
 # Support
 

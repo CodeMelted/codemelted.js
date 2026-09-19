@@ -495,9 +495,9 @@ document.documentElement.classList.add(getStoredTheme() || getSystemTheme());
               <span class='fraction'>70/163</span>
             </div>
             <div class='fl pad1y space-right2'>
-              <span class='strong'>74.27%</span>
+              <span class='strong'>74.34%</span>
               <span class='quiet'>Lines</span>
-              <span class='fraction'>3908/5262</span>
+              <span class='fraction'>3923/5277</span>
             </div>
           </div>
         </div>
@@ -5820,7 +5820,22 @@ document.documentElement.classList.add(getStoredTheme() || getSystemTheme());
 <a href='#L5259' id='L5259'>5259</a>
 <a href='#L5260' id='L5260'>5260</a>
 <a href='#L5261' id='L5261'>5261</a>
-<a href='#L5262' id='L5262'>5262</a></pre></td>
+<a href='#L5262' id='L5262'>5262</a>
+<a href='#L5263' id='L5263'>5263</a>
+<a href='#L5264' id='L5264'>5264</a>
+<a href='#L5265' id='L5265'>5265</a>
+<a href='#L5266' id='L5266'>5266</a>
+<a href='#L5267' id='L5267'>5267</a>
+<a href='#L5268' id='L5268'>5268</a>
+<a href='#L5269' id='L5269'>5269</a>
+<a href='#L5270' id='L5270'>5270</a>
+<a href='#L5271' id='L5271'>5271</a>
+<a href='#L5272' id='L5272'>5272</a>
+<a href='#L5273' id='L5273'>5273</a>
+<a href='#L5274' id='L5274'>5274</a>
+<a href='#L5275' id='L5275'>5275</a>
+<a href='#L5276' id='L5276'>5276</a>
+<a href='#L5277' id='L5277'>5277</a></pre></td>
           <td class='line-coverage quiet'><pre><span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
 <span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
 <span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
@@ -9261,6 +9276,21 @@ document.documentElement.classList.add(getStoredTheme() || getSystemTheme());
 <span class='cline-any cline-no'>&nbsp;</span>
 <span class='cline-any cline-no'>&nbsp;</span>
 <span class='cline-any cline-no'>&nbsp;</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
+<span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
 <span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
 <span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
 <span class='cline-any cline-yes' title='This line is covered 1 time'>x1</span>
@@ -13482,6 +13512,21 @@ document.documentElement.classList.add(getStoredTheme() || getSystemTheme());
 
 
 <span class='missing-if-branch' title='branch condition is missed in this line'>I</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -20005,7 +20050,8 @@ export const EVENT_REQUEST = Object.freeze({
 // [PUBLIC API] ---------------------------------------------------------------
 
 /**
- *
+ * Determines if a particular resources is available to the JavaScript runtime
+ * the module was loaded into.
  * @param {object} params The named parameters.
  * @param {AVAILABILITY_REQUEST} params.request The item to query about the runtime.
  * @param {string} [params.name = ""] An additional name to aid in the query.
@@ -20013,6 +20059,20 @@ export const EVENT_REQUEST = Object.freeze({
  * named feature. Only valid with the {@link AVAILABILITY_REQUEST.AskRuntime}
  * request.
  * @returns {boolean}
+ * @example
+ * // Determine if this is the Deno runtime
+ * if (runtime_available({request AVAILABILITY_REQUEST.Deno})) {
+ *   // Do Deno related things.
+ * }
+ *
+ * // Ask runtime about a particular thing globally
+ * // Can also specify the obj property to check on a given object.
+ * // NOTE: "serial" is predefined ask. Just using as an example.
+ * if (runtime_available({
+ *     request: AVAILABILITY_REQUEST.AskRuntime,
+ *     name: "serial"})) {
+ *   // Do serial things
+ * }
  */
 export function runtime_available({request, name="", obj = globalThis}) {
   /**
@@ -21616,7 +21676,7 @@ cli_main();</pre></td>
       <div class='footer quiet pad2 space-top1 center small'>
         Code coverage generated by
         <a href='https://deno.com/' target='_blank' rel='noopener noreferrer'>Deno v2.9.4</a>
-        at Sat, 19 Sep 2026 02:18:23 +0000
+        at Sat, 19 Sep 2026 03:20:46 +0000
       </div>
         </body>
       </html>

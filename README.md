@@ -84,7 +84,7 @@ The sections below break down the architecture of the module and how the domain 
 
 ## Runtime Use Case
 
-<mark>Produce Models</mark>
+<img src="models/runtime_usecase.png" />
 
 ## Storage Use Case
 

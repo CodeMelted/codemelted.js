@@ -3658,7 +3658,8 @@ export const EVENT_REQUEST = Object.freeze({
 // [PUBLIC API] ---------------------------------------------------------------
 
 /**
- *
+ * Determines if a particular resources is available to the JavaScript runtime
+ * the module was loaded into.
  * @param {object} params The named parameters.
  * @param {AVAILABILITY_REQUEST} params.request The item to query about the runtime.
  * @param {string} [params.name = ""] An additional name to aid in the query.
@@ -3666,6 +3667,20 @@ export const EVENT_REQUEST = Object.freeze({
  * named feature. Only valid with the {@link AVAILABILITY_REQUEST.AskRuntime}
  * request.
  * @returns {boolean}
+ * @example
+ * // Determine if this is the Deno runtime
+ * if (runtime_available({request AVAILABILITY_REQUEST.Deno})) {
+ *   // Do Deno related things.
+ * }
+ *
+ * // Ask runtime about a particular thing globally
+ * // Can also specify the obj property to check on a given object.
+ * // NOTE: "serial" is predefined ask. Just using as an example.
+ * if (runtime_available({
+ *     request: AVAILABILITY_REQUEST.AskRuntime,
+ *     name: "serial"})) {
+ *   // Do serial things
+ * }
  */
 export function runtime_available({request, name="", obj = globalThis}) {
   /**
