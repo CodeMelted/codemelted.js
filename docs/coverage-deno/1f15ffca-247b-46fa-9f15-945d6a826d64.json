@@ -7,7 +7,7 @@
       "ranges": [
         {
           "startOffset": 0,
-          "endOffset": 172852,
+          "endOffset": 173634,
           "count": 1
         }
       ],
@@ -2313,8 +2313,8 @@
       "functionName": "storage_clear",
       "ranges": [
         {
-          "startOffset": 124140,
-          "endOffset": 125506,
+          "startOffset": 124270,
+          "endOffset": 125636,
           "count": 0
         }
       ],
@@ -2324,8 +2324,8 @@
       "functionName": "storage_get",
       "ranges": [
         {
-          "startOffset": 126177,
-          "endOffset": 127452,
+          "startOffset": 126437,
+          "endOffset": 127712,
           "count": 0
         }
       ],
@@ -2335,8 +2335,8 @@
       "functionName": "storage_key",
       "ranges": [
         {
-          "startOffset": 128115,
-          "endOffset": 129521,
+          "startOffset": 128505,
+          "endOffset": 129911,
           "count": 0
         }
       ],
@@ -2346,8 +2346,8 @@
       "functionName": "storage_length",
       "ranges": [
         {
-          "startOffset": 130059,
-          "endOffset": 131225,
+          "startOffset": 130581,
+          "endOffset": 131747,
           "count": 0
         }
       ],
@@ -2357,8 +2357,8 @@
       "functionName": "storage_remove",
       "ranges": [
         {
-          "startOffset": 131777,
-          "endOffset": 133063,
+          "startOffset": 132429,
+          "endOffset": 133715,
           "count": 0
         }
       ],
@@ -2368,8 +2368,8 @@
       "functionName": "storage_set",
       "ranges": [
         {
-          "startOffset": 133719,
-          "endOffset": 135083,
+          "startOffset": 134501,
+          "endOffset": 135865,
           "count": 0
         }
       ],
@@ -2379,8 +2379,8 @@
       "functionName": "ui_action",
       "ranges": [
         {
-          "startOffset": 146793,
-          "endOffset": 150903,
+          "startOffset": 147575,
+          "endOffset": 151685,
           "count": 0
         }
       ],
@@ -2390,8 +2390,8 @@
       "functionName": "ui_document",
       "ranges": [
         {
-          "startOffset": 151280,
-          "endOffset": 153209,
+          "startOffset": 152062,
+          "endOffset": 153991,
           "count": 0
         }
       ],
@@ -2401,8 +2401,8 @@
       "functionName": "ui_notify",
       "ranges": [
         {
-          "startOffset": 153710,
-          "endOffset": 154670,
+          "startOffset": 154492,
+          "endOffset": 155452,
           "count": 0
         }
       ],
@@ -2412,8 +2412,8 @@
       "functionName": "ui_screen",
       "ranges": [
         {
-          "startOffset": 154724,
-          "endOffset": 157694,
+          "startOffset": 155506,
+          "endOffset": 158476,
           "count": 0
         }
       ],
@@ -2423,8 +2423,8 @@
       "functionName": "ui_open",
       "ranges": [
         {
-          "startOffset": 158995,
-          "endOffset": 162628,
+          "startOffset": 159777,
+          "endOffset": 163410,
           "count": 0
         }
       ],
@@ -2434,8 +2434,8 @@
       "functionName": "<instance_members_initializer>",
       "ranges": [
         {
-          "startOffset": 163757,
-          "endOffset": 164082,
+          "startOffset": 164539,
+          "endOffset": 164864,
           "count": 0
         }
       ],
@@ -2445,8 +2445,8 @@
       "functionName": "CHtmlComponent",
       "ranges": [
         {
-          "startOffset": 164895,
-          "endOffset": 166433,
+          "startOffset": 165677,
+          "endOffset": 167215,
           "count": 0
         }
       ],
@@ -2456,8 +2456,8 @@
       "functionName": "get shadow_root",
       "ranges": [
         {
-          "startOffset": 166582,
-          "endOffset": 166629,
+          "startOffset": 167364,
+          "endOffset": 167411,
           "count": 0
         }
       ],
@@ -2467,8 +2467,8 @@
       "functionName": "get_css_value",
       "ranges": [
         {
-          "startOffset": 167059,
-          "endOffset": 167352,
+          "startOffset": 167841,
+          "endOffset": 168134,
           "count": 0
         }
       ],
@@ -2478,8 +2478,8 @@
       "functionName": "adoptedCallback",
       "ranges": [
         {
-          "startOffset": 167451,
-          "endOffset": 167494,
+          "startOffset": 168233,
+          "endOffset": 168276,
           "count": 0
         }
       ],
@@ -2489,8 +2489,8 @@
       "functionName": "attributeChangedCallback",
       "ranges": [
         {
-          "startOffset": 167853,
-          "endOffset": 168121,
+          "startOffset": 168635,
+          "endOffset": 168903,
           "count": 0
         }
       ],
@@ -2500,8 +2500,8 @@
       "functionName": "connectedCallback",
       "ranges": [
         {
-          "startOffset": 168378,
-          "endOffset": 168572,
+          "startOffset": 169160,
+          "endOffset": 169354,
           "count": 0
         }
       ],
@@ -2511,8 +2511,8 @@
       "functionName": "connectedMoveCallback",
       "ranges": [
         {
-          "startOffset": 169080,
-          "endOffset": 169287,
+          "startOffset": 169862,
+          "endOffset": 170069,
           "count": 0
         }
       ],
@@ -2522,8 +2522,8 @@
       "functionName": "disconnectedCallback",
       "ranges": [
         {
-          "startOffset": 169388,
-          "endOffset": 169591,
+          "startOffset": 170170,
+          "endOffset": 170373,
           "count": 0
         }
       ],
@@ -2533,8 +2533,8 @@
       "functionName": "refresh",
       "ranges": [
         {
-          "startOffset": 169668,
-          "endOffset": 169960,
+          "startOffset": 170450,
+          "endOffset": 170742,
           "count": 0
         }
       ],
@@ -2544,8 +2544,8 @@
       "functionName": "register_component",
       "ranges": [
         {
-          "startOffset": 170188,
-          "endOffset": 170474,
+          "startOffset": 170970,
+          "endOffset": 171256,
           "count": 0
         }
       ],
@@ -2555,18 +2555,18 @@
       "functionName": "cli_main",
       "ranges": [
         {
-          "startOffset": 172390,
-          "endOffset": 172840,
+          "startOffset": 173172,
+          "endOffset": 173622,
           "count": 1
         },
         {
-          "startOffset": 172518,
-          "endOffset": 172572,
+          "startOffset": 173300,
+          "endOffset": 173354,
           "count": 0
         },
         {
-          "startOffset": 172695,
-          "endOffset": 172753,
+          "startOffset": 173477,
+          "endOffset": 173535,
           "count": 0
         }
       ],

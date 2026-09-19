@@ -3902,11 +3902,14 @@ export const STORAGE_TYPE = Object.freeze({
  * @param {STORAGE_TYPE} [type=STORAGE_TYPE.Local] The storage to act upon.
  * @returns {Promise<void>} A rejected promise represents an API violation.
  * @example
- * // To clear all elements in the specified storage type
- * // Defaults to STORAGE_TYPE.Local
- * await storage_clear();
- * // To specify type
- * await storage_clear(STORAGE_TYPE.Session);
+ * // Make sure it is available to the runtime.
+ * if (runtime_available({request: AVAILABILITY_REQUEST.Local})) {
+ *   // To clear all elements in the specified storage type
+ *   // Defaults to STORAGE_TYPE.Local
+ *   await storage_clear();
+ *   // To specify type
+ *   await storage_clear(STORAGE_TYPE.Session);
+ * }
  */
 export async function storage_clear(type = STORAGE_TYPE.Local) {
   try {
@@ -3956,11 +3959,14 @@ export async function storage_clear(type = STORAGE_TYPE.Local) {
  * @returns {Promise<string?>} The value associated with the key if found. A
  * rejected promise represents an API violation.
  * @example
- * // To get an element from storage. Either string or null if not found
- * // Defaults to STORAGE_TYPE.Local
- * let value = await storage_get({key: "cool"});
- * // To specify type
- * let value = await storage_get({type: STORAGE_TYPE.Session, key: "cool"});
+ * // Make sure it is available to the runtime.
+ * if (runtime_available({request: AVAILABILITY_REQUEST.Local})) {
+ *   // To get an element from storage. Either string or null if not found
+ *   // Defaults to STORAGE_TYPE.Local
+ *   let value = await storage_get({key: "cool"});
+ *   // To specify type
+ *   let value = await storage_get({type: STORAGE_TYPE.Session, key: "cool"});
+ * }
  */
 export async function storage_get({type = STORAGE_TYPE.Local, key}) {
   try {
@@ -4007,11 +4013,14 @@ export async function storage_get({type = STORAGE_TYPE.Local, key}) {
  * beyond the storage capacity. A rejected promise represents an API
  * violation.
  * @example
- * // To get a key at an index. Either string or null if not found
- * // Defaults to STORAGE_TYPE.Local
- * let key = await storage_key({index: 0});
- * // To specify type
- * let key = await storage_key({type: STORAGE_TYPE.Session, index: 0});
+ * // Make sure it is available to the runtime.
+ * if (runtime_available({request: AVAILABILITY_REQUEST.Local})) {
+ *   // To get a key at an index. Either string or null if not found
+ *   // Defaults to STORAGE_TYPE.Local
+ *   let key = await storage_key({index: 0});
+ *   // To specify type
+ *   let key = await storage_key({type: STORAGE_TYPE.Session, index: 0});
+ * }
  */
 export async function storage_key({type = STORAGE_TYPE.Local, index}) {
   try {
@@ -4058,12 +4067,15 @@ export async function storage_key({type = STORAGE_TYPE.Local, index}) {
  * @returns {Promise<number>} The number in storage. A rejected promise
  * represents an API violation.
  * @example
- * // To get the number of elements in storage
- * // Assumes no errors with the CResult.
- * // Defaults to STORAGE_TYPE.Local
- * let length = await storage_length());
- * // To specify type
- * let length = await storage_length(type: STORAGE_TYPE.Session));
+ * // Make sure it is available to the runtime.
+ * if (runtime_available({request: AVAILABILITY_REQUEST.Local})) {
+ *   // To get the number of elements in storage
+ *   // Assumes no errors with the CResult.
+ *   // Defaults to STORAGE_TYPE.Local
+ *   let length = await storage_length());
+ *   // To specify type
+ *   let length = await storage_length(type: STORAGE_TYPE.Session));
+ * }
  */
 export async function storage_length(type = STORAGE_TYPE.Local) {
   try {
@@ -4103,11 +4115,14 @@ export async function storage_length(type = STORAGE_TYPE.Local) {
  * @param {string} params.key The key to remove.
  * @returns {Promise<void>} Rejected promise represents an API violation.
  * @example
- * // To remove an element from storage.
- * // Defaults to STORAGE_TYPE.Local
- * await storage_remove({key: "cool"});
- * // To specify type
- * await storage_remove({type: STORAGE_TYPE.Session, key: "cool"});
+ * // Make sure it is available to the runtime.
+ * if (runtime_available({request: AVAILABILITY_REQUEST.Local})) {
+ *   // To remove an element from storage.
+ *   // Defaults to STORAGE_TYPE.Local
+ *   await storage_remove({key: "cool"});
+ *   // To specify type
+ *   await storage_remove({type: STORAGE_TYPE.Session, key: "cool"});
+ * }
  */
 export async function storage_remove({type = STORAGE_TYPE.Local, key}) {
   try {
@@ -4153,11 +4168,14 @@ export async function storage_remove({type = STORAGE_TYPE.Local, key}) {
  * @param {string} params.key The key to store.
  * @returns {Promise<void>} Rejected promise represents an API violation.
  * @example
- * // To add an element to storage.
- * // Defaults to STORAGE_TYPE.Local
- * await storage_set({key: "cool", value: "guy"});
- * // To specify type
- * await storage_set({type: STORAGE_TYPE.Session, key: "cool", value: "guy"});
+ * // Make sure it is available to the runtime.
+ * if (runtime_available({request: AVAILABILITY_REQUEST.Local})) {
+ *   // To add an element to storage.
+ *   // Defaults to STORAGE_TYPE.Local
+ *   await storage_set({key: "cool", value: "guy"});
+ *   // To specify type
+ *   await storage_set({type: STORAGE_TYPE.Session, key: "cool", value: "guy"});
+ * }
  */
 export async function storage_set({type = STORAGE_TYPE.Local, key, value}) {
   try {

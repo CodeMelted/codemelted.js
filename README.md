@@ -88,7 +88,7 @@ The sections below break down the architecture of the module and how the domain 
 
 ## Storage Use Case
 
-<mark>Produce Models</mark>
+<img src="models/storage_usecase.png" />
 
 ## UI Use Case
 
